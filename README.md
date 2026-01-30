@@ -7,7 +7,6 @@ The project **agentic fraud investigation system** simulates how banks investiga
 
 ## Key Capabilities
 
-- Synthetic data generation  
 - Multi-agent fraud investigation pipeline  
 - Deterministic risk scoring + rule-based detection  
 - LLM-powered narrative generation (safe, explainable)  
