@@ -37,7 +37,7 @@ Final Verdict
 Investigator Copilot (Chat)
 
  ``` 
- 
+
 ---
 
 ## Agents Overview
@@ -105,7 +105,7 @@ Investigator Copilot (Chat)
 - LLaMA 3.2 (via Ollama)
 
 **Data**
-- Synthetic transaction
+- Synthetic data generated
   - Transaction data
   - User profile data
   - fraud rules 
