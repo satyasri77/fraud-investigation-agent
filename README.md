@@ -36,7 +36,8 @@ Final Verdict
   ▼
 Investigator Copilot (Chat)
 
-
+ ``` 
+ 
 ---
 
 ## Agents Overview
