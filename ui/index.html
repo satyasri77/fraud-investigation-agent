@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Investigator Copilot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        h2 { color: #333; }
+        input, button {
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        #chat {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .q { font-weight: bold; margin-top: 10px; }
+        .a { margin-left: 10px; }
+    </style>
+</head>
+<body>
+
+<h2>🕵️ Fraud Investigator Copilot</h2>
+
+<label>Alert ID</label>
+<input id="alertId" placeholder="e.g. ALERT900000"/>
+
+<button id="investigateBtn">Run Investigation</button>
+
+<hr/>
+
+<label>Ask a question</label>
+<input id="question" placeholder="Why was this transaction flagged?"/>
+<button id="askBtn">Ask Copilot</button>
+
+<div id="chat"></div>
+
+<script>
+let investigationDone = false;
+
+// Attach events after DOM loaded
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("investigateBtn").addEventListener("click", runInvestigation);
+    document.getElementById("askBtn").addEventListener("click", askCopilot);
+});
+
+// Run investigation
+async function runInvestigation() {
+    const alertId = document.getElementById("alertId").value.trim();
+    if (!alertId) { alert("Enter alert ID"); return; }
+
+    const res = await fetch(`/investigate/${alertId}`, { method: "POST" });
+
+    if (!res.ok) {
+        const err = await res.json();
+        alert(err.detail || "Investigation failed");
+        return;
+    }
+
+    investigationDone = true;
+    document.getElementById("chat").innerHTML =
+        "<div class='a'>✅ Investigation completed. You can now chat with the case.</div>";
+}
+
+// Ask question to copilot
+async function askCopilot() {
+    if (!investigationDone) {
+        alert("Please run investigation first.");
+        return;
+    }
+
+    const alertId = document.getElementById("alertId").value.trim();
+    const questionInput = document.getElementById("question");
+    const question = questionInput.value.trim();
+
+    if (!question) {
+        alert("Please type a question.");
+        return;
+    }
+
+    const res = await fetch(`/investigate/${alertId}/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question })
+    });
+
+    if (!res.ok) {
+        const err = await res.json();
+        alert(err.detail || "Chat failed");
+        return;
+    }
+
+    const data = await res.json();
+
+    document.getElementById("chat").innerHTML +=
+        `<div class='q'>Q: ${question}</div>
+         <div class='a'>A: ${data.answer}</div>`;
+
+    // ✅ Clear and focus input for next question
+    questionInput.value = "";
+    questionInput.focus();
+}
+</script>
+
+</body>
+</html>

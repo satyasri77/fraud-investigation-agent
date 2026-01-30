@@ -1,0 +1,26 @@
+[
+  {
+    "rule_id": "R001",
+    "rule_name": "High Amount Deviation",
+    "description": "Transaction amount > 5x user average",
+    "severity": "high"
+  },
+  {
+    "rule_id": "R002",
+    "rule_name": "New Country",
+    "description": "Transaction from unseen country",
+    "severity": "medium"
+  },
+  {
+    "rule_id": "R003",
+    "rule_name": "New Device",
+    "description": "Transaction from unseen device",
+    "severity": "medium"
+  },
+  {
+    "rule_id": "R004",
+    "rule_name": "Abnormal Hour",
+    "description": "Transaction outside normal active hours",
+    "severity": "low"
+  }
+]
