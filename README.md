@@ -19,21 +19,23 @@ The project **agentic fraud investigation system** simulates how banks investiga
 
 ## System Architecture
 
+```text
 Alert ID
-│
-▼
+  │
+  ▼
 Fraud Orchestrator
-│
-├── Behavioral Agent → User behavior deviation analysis
-├── Pattern Agent → Known fraud pattern detection
-├── Triage Agent → Risk level & priority assignment
-├── Narrative Agent (LLM) → Human-readable fraud explanation
-│
-▼
+  │
+  ├── Behavioral Agent → User behavior deviation analysis
+  ├── Pattern Agent → Known fraud pattern detection
+  ├── Triage Agent → Risk level & priority assignment
+  ├── Narrative Agent (LLM) → Human-readable fraud explanation
+  │
+  ▼
 Final Verdict
-│
-▼
+  │
+  ▼
 Investigator Copilot (Chat)
+
 
 ---
 
@@ -55,17 +57,17 @@ Investigator Copilot (Chat)
   - Geo-device inconsistencies
 
 ### Triage Agent
+- Determines investigation urgency
 - Assigns:
   - Risk level (`low / medium / high`)
   - Priority score
-- Determines investigation urgency
+
 
 ### Narrative Agent (LLM-powered)
 - Uses **LLaMA 3.2 (local via Ollama)**
 - Generates:
   - Clear fraud summary
   - Key risk indicators
-  - Actionable recommendation
 - **LLM does NOT decide fraud** — it only explains why it's flagged as fraud using the data provided
 
 ### Investigator Copilot
@@ -73,7 +75,6 @@ Investigator Copilot (Chat)
 - Answers questions like:
   - “Why is this transaction high risk?”
   - “What evidence supports escalation?”
-- Grounded strictly in case data (no hallucinations)
 
 ---
 
@@ -83,8 +84,7 @@ Investigator Copilot (Chat)
 - Features:
   - Enter Alert ID
   - Run investigation
-  - Chat with the case
-- Powered by FastAPI backend
+  - Chat about the case (why it's fraud?)
 
 ## Application Screenshot
 
@@ -94,22 +94,20 @@ Investigator Copilot (Chat)
 
 ## Tech Stack
 
-**Backend**
+**Backend and Frontend**
 - Python 3.10+
 - FastAPI
-- Pydantic
+- HTML for UI
 
 **AI / ML**
 - Rule-based fraud logic
 - LLaMA 3.2 (via Ollama)
-- Sentence Transformers (future extensibility)
 
 **Data**
-- Synthetic transaction & user history generator
-- Pandas / NumPy
-
-**Infra**
-- Local-first (no cloud dependency)
-- Ollama for LLM execution
+- Synthetic transaction
+  - Transaction data
+  - User profile data
+  - fraud rules 
+  - alert transactions data
 
 ---
