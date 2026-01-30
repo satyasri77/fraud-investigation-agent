@@ -7,13 +7,13 @@ The project **agentic fraud investigation system** simulates how banks investiga
 
 ## Key Capabilities
 
-- ✅ Multi-agent fraud investigation pipeline  
-- ✅ Deterministic risk scoring + rule-based detection  
-- ✅ LLM-powered narrative generation (safe, explainable)  
-- ✅ Investigator Copilot (chat with the case)  
-- ✅ FastAPI backend + HTML UI  
-- ✅ Fully local LLM execution using **Ollama (LLaMA 3.2:3B)**  
-- ✅ Synthetic BFSI-grade data generation  
+- Multi-agent fraud investigation pipeline  
+- Deterministic risk scoring + rule-based detection  
+- LLM-powered narrative generation (safe, explainable)  
+- Investigator Copilot (chat with the case)  
+- FastAPI backend + HTML UI  
+- Fully local LLM execution using **Ollama (LLaMA 3.2:3B)**  
+- Synthetic BFSI-grade data generation  
 
 ---
 
@@ -66,8 +66,7 @@ Investigator Copilot (Chat)
   - Clear fraud summary
   - Key risk indicators
   - Actionable recommendation
-- **LLM does NOT decide fraud** — it only explains structured findings  
-  ✅ Safe, compliant design
+- **LLM does NOT decide fraud** — it only explains why it's flagged as fraud using the data provided
 
 ### Investigator Copilot
 - Allows investigators to **chat with the case**
